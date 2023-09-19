@@ -31,8 +31,8 @@ class HeaderTabBarState extends State<HeaderTabBar> {
         },
         color: tabBackgroundColor,
         elevation: 0,
-        minWidth: 50,
-        padding: EdgeInsets.all(20),
+        minWidth: 35,
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
         child: Icon(
           Icons.home_filled,
           color: tabContext.isActive ? Colors.white : Colors.grey,
@@ -84,18 +84,15 @@ class HeaderTabBarState extends State<HeaderTabBar> {
                       softWrap: false,
                       overflow: TextOverflow.fade,
                     )),
-                CloseButton(
-                  style: ButtonStyle(
-                    iconSize: MaterialStateProperty.all(5),
-                  ),
-                  onPressed: () {
-                    TabContextHolder.closeTab(tabContext.contextId);
-                    setState(() {
-                      tabInfos = TabContextHolder.getAllTabInfo();
-                    });
-                  },
-                  color: textColor,
-                ),
+                SizedBox.fromSize(size: const Size.square(20),child: IconButton(onPressed: () {
+                  TabContextHolder.closeTab(tabContext.contextId);
+                  setState(() {
+                    tabInfos = TabContextHolder.getAllTabInfo();
+                  });
+                },
+                icon: Icon(Icons.close, color: textColor, size: 10,),
+                padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),),)
+                ,
               ],
             )),
       );
@@ -103,7 +100,7 @@ class HeaderTabBarState extends State<HeaderTabBar> {
       tab = MaterialButton(
         onPressed: () {},
         minWidth: 50,
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(vertical:10, horizontal:25),
         color: tabBackgroundColor,
         elevation: 0,
         child: Icon(
@@ -125,7 +122,7 @@ class HeaderTabBarState extends State<HeaderTabBar> {
   Widget build(BuildContext context) {
     return Container(
         color: Colors.black26,
-        height: 50,
+        height: 35,
         width: double.infinity,
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
